@@ -1,14 +1,16 @@
 package GUI;
-
+import java.awt.Font;
 import org.newdawn.slick.*;
-
 public class Game extends BasicGame {
 
     Image poyta = null;
     Image[] kasikortti = {null, null};
+    Image vastustajankortti = null;
     float[] kortinX = {290, 400};
     float[] kortinY = {400, 400};
     float scale = 1;
+    Font font;
+    TrueTypeFont ttf;
 
     public Game() {
         super("Texas Hold'em");
@@ -20,6 +22,9 @@ public class Game extends BasicGame {
         poyta = new Image("images/pokeripoyta.png");
         kasikortti[0] = new Image("images/card_38_1.png");
         kasikortti[1] = new Image("images/card_51_1.png");
+        vastustajankortti = new Image ("images/card_back.png");
+        font = new Font("Verdana", Font.BOLD, 40);
+        ttf = new TrueTypeFont(font, true);
     }
 
     @Override
@@ -51,7 +56,7 @@ public class Game extends BasicGame {
         if (input.isKeyDown(Input.KEY_1)) {
             scale -= (scale <= 1.0f) ? 0 : 0.1f;
             kasikortti[0].setCenterOfRotation(kasikortti[0].getWidth() / 2.0f * scale, kasikortti[0].getHeight() / 2.0f * scale);
-        } 
+        }
     }
 
     public void render(GameContainer gc, Graphics g)
@@ -60,6 +65,13 @@ public class Game extends BasicGame {
         for (int i = 0; i < 2; i++) {
             kasikortti[i].draw(kortinX[i], kortinY[i], scale);
         }
+        ttf.drawString(350, 545, "10000");
+       vastustajankortti.draw(50,250);
+       vastustajankortti.draw(105,250);
+       vastustajankortti.draw(350,50);
+       vastustajankortti.draw(405,50);
+       vastustajankortti.draw(650,250);
+       vastustajankortti.draw(705,250);
     }
 
     public static void main(String[] args)
