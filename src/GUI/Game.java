@@ -1,5 +1,7 @@
 package GUI;
 import java.awt.Font;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.*;
 public class Game extends BasicGame {
 
@@ -16,6 +18,8 @@ public class Game extends BasicGame {
     Font font;
     TrueTypeFont heronChipit;
     TrueTypeFont muut;
+    UnicodeFont uFont;
+    TextField textField;
 
     public Game() {
         super("Texas Hold'em");
@@ -36,6 +40,8 @@ public class Game extends BasicGame {
         heronChipit = new TrueTypeFont(font, true);
         font = new Font("Verdana", Font.PLAIN, 15);
         muut = new TrueTypeFont(font, true);
+        uFont =  new UnicodeFont(font);
+        textField = new TextField(gc, uFont, 0, 450, 180, 150);
     }
 
     @Override
@@ -89,6 +95,7 @@ public class Game extends BasicGame {
        check.draw(700,700);
        fold.draw(700,800);
        raise.draw(700,900);
+       textField.render(gc, g);
     }
 
     public static void main(String[] args)
