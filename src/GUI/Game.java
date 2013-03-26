@@ -3,6 +3,10 @@ import java.awt.Font;
 import org.newdawn.slick.*;
 public class Game extends BasicGame {
 
+    Image check = null;
+    Image fold = null;
+    Image raise = null;
+    Image dealer_sign = null;
     Image poyta = null;
     Image[] kasikortti = {null, null};
     Image vastustajankortti = null;
@@ -10,7 +14,8 @@ public class Game extends BasicGame {
     float[] kortinY = {400, 400};
     float scale = 1;
     Font font;
-    TrueTypeFont ttf;
+    TrueTypeFont heronChipit;
+    TrueTypeFont muut;
 
     public Game() {
         super("Texas Hold'em");
@@ -19,12 +24,18 @@ public class Game extends BasicGame {
     @Override
     public void init(GameContainer gc)
             throws SlickException {
+        raise = new Image ("images/raise.png");
+        fold = new Image ("images/fold.png");
+        check = new Image ("images/check.png");
+        dealer_sign = new Image ("images/dealer_sign.png");
         poyta = new Image("images/pokeripoyta.png");
-        kasikortti[0] = new Image("images/card_38_1.png");
-        kasikortti[1] = new Image("images/card_51_1.png");
+        kasikortti[0] = new Image("images/card_38.png");
+        kasikortti[1] = new Image("images/card_51.png");
         vastustajankortti = new Image ("images/card_back.png");
         font = new Font("Verdana", Font.BOLD, 40);
-        ttf = new TrueTypeFont(font, true);
+        heronChipit = new TrueTypeFont(font, true);
+        font = new Font("Verdana", Font.PLAIN, 15);
+        muut = new TrueTypeFont(font, true);
     }
 
     @Override
@@ -65,13 +76,19 @@ public class Game extends BasicGame {
         for (int i = 0; i < 2; i++) {
             kasikortti[i].draw(kortinX[i], kortinY[i], scale);
         }
-        ttf.drawString(350, 545, "10000");
+       heronChipit.drawString(350, 545, "10000");
        vastustajankortti.draw(50,250);
        vastustajankortti.draw(105,250);
        vastustajankortti.draw(350,50);
        vastustajankortti.draw(405,50);
        vastustajankortti.draw(650,250);
        vastustajankortti.draw(705,250);
+       dealer_sign.draw(110,330);
+       muut.drawString ( 450,145, "$ 50");
+       muut.drawString ( 650,345, "$ 100");
+       check.draw(700,700);
+       fold.draw(700,800);
+       raise.draw(700,900);
     }
 
     public static void main(String[] args)
